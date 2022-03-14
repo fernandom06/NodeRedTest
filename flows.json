@@ -1,0 +1,234 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "29cbd3b9e8e44c59",
+        "type": "telegram bot",
+        "botname": "PruiebaNodeBot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "ca32d2ef93cf1086",
+        "type": "twitter-credentials",
+        "screen_name": "fernandom06"
+    },
+    {
+        "id": "bafe6d8d24ccf497",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "prueba",
+        "props": [
+            {
+                "p": "topic",
+                "v": "{\"hola\":\"hola\"}",
+                "vt": "json"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "topic.hola",
+        "payloadType": "msg",
+        "x": 650,
+        "y": 260,
+        "wires": [
+            [
+                "5dd5e668502ae286"
+            ]
+        ]
+    },
+    {
+        "id": "5dd5e668502ae286",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "dd6e824677b117b5",
+        "type": "telegram command",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "command": "/bankinter",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "29cbd3b9e8e44c59",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 680,
+        "y": 640,
+        "wires": [
+            [
+                "3c6af0db23737ffd"
+            ],
+            [
+                "3c6af0db23737ffd"
+            ]
+        ]
+    },
+    {
+        "id": "3c6af0db23737ffd",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "//let a = context.get(\"payload\");\n\nlet msgg = {}\nmsgg.payload = {\n    \"content\": \"Es una pellejada\",\n    \"type\": \"message\",\n    \"chatId\": msg.payload.chatId\n}\nreturn msgg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 600,
+        "wires": [
+            [
+                "6cd523ae5ca6544b"
+            ]
+        ]
+    },
+    {
+        "id": "6cd523ae5ca6544b",
+        "type": "telegram sender",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "bot": "29cbd3b9e8e44c59",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3344ae3acc132512",
+        "type": "telegram event",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "bot": "29cbd3b9e8e44c59",
+        "event": "channel_post",
+        "autoanswer": false,
+        "x": 590,
+        "y": 780,
+        "wires": [
+            [
+                "ba9dd3ee6c1c2805",
+                "ab89b67e5bbb5867"
+            ]
+        ]
+    },
+    {
+        "id": "ba9dd3ee6c1c2805",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "ab89b67e5bbb5867",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "d": true,
+        "name": "",
+        "func": "//let a = context.get(\"payload\");\n\nlet twiiterMessage = {}\ntwiiterMessage.payload = \"Prueba\"\n\n//twiiterMessage.payload = {\n//    \"content\": \"Es una pellejada\",\n//    \"type\": \"message\",\n//    \"chatId\": msg.payload.chatId\n//}\n\n\nreturn twiiterMessage;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 840,
+        "wires": [
+            [
+                "b102c4458a6b17de"
+            ]
+        ]
+    },
+    {
+        "id": "b102c4458a6b17de",
+        "type": "twitter out",
+        "z": "f6f2187d.f17ca8",
+        "twitter": "ca32d2ef93cf1086",
+        "name": "Tweet",
+        "x": 1110,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "264574f6625e29cb",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "hola",
+        "payloadType": "str",
+        "x": 1070,
+        "y": 760,
+        "wires": [
+            [
+                "b102c4458a6b17de"
+            ]
+        ]
+    }
+]
